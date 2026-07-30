@@ -1,25 +1,77 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primitives — Brand */
+  --brand-100: #f7faff;
+  --brand-200: #e9f1ff;
+  --brand-300: #b8d2fe;
+  --brand-400: #609aff;
+  --brand-500: #0e6df9;
+  --brand-600: #0553c7;
+  --brand-700: #3c4e6b;
+  --brand-800: #18273f;
+  --brand-900: #08101e;
+
+  /* Primitives — Neutral */
+  --white: #ffffff;
+  --neutral-100: #f7f7f7;
+  --neutral-200: #ededed;
+  --neutral-300: #e1e1e1;
+  --neutral-400: #9e9e9e;
+  --neutral-500: #626262;
+  --neutral-700: #37393d;
+  --black: #000000;
+
+  /*
+   * Semantic colors used by product navigation (light mode).
+   * Mapped from Figma variables on node 1270:807 → primitives.
+   */
+  --semantic-bg-primary: var(--white);
+  --semantic-bg-secondary: var(--neutral-100);
+  --semantic-bg-tertiary: var(--neutral-200);
+  --semantic-bg-brand-subtle: var(--brand-100);
+
+  --semantic-text-primary: var(--black);
+  --semantic-text-secondary: var(--neutral-500);
+  --semantic-text-tertiary: var(--neutral-400);
+  --semantic-text-navigation: var(--neutral-700);
+  --semantic-text-brand: var(--brand-500);
+
+  --semantic-icon-primary: var(--black);
+  --semantic-icon-secondary: var(--neutral-500);
+  --semantic-icon-brand: var(--brand-500);
+  --semantic-icon-inverse: var(--white);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-background: var(--semantic-bg-primary);
+  --color-foreground: var(--semantic-text-primary);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-bg-primary: var(--semantic-bg-primary);
+  --color-bg-secondary: var(--semantic-bg-secondary);
+  --color-bg-tertiary: var(--semantic-bg-tertiary);
+  --color-bg-brand-subtle: var(--semantic-bg-brand-subtle);
+
+  --color-text-primary: var(--semantic-text-primary);
+  --color-text-secondary: var(--semantic-text-secondary);
+  --color-text-tertiary: var(--semantic-text-tertiary);
+  --color-text-navigation: var(--semantic-text-navigation);
+  --color-text-brand: var(--semantic-text-brand);
+
+  --color-icon-primary: var(--semantic-icon-primary);
+  --color-icon-secondary: var(--semantic-icon-secondary);
+  --color-icon-brand: var(--semantic-icon-brand);
+  --color-icon-inverse: var(--semantic-icon-inverse);
+
+  --color-brand-500: var(--brand-500);
+  --color-neutral-200: var(--neutral-200);
+  --color-neutral-300: var(--neutral-300);
+  --color-neutral-700: var(--neutral-700);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--semantic-bg-primary);
+  color: var(--semantic-text-primary);
 }
