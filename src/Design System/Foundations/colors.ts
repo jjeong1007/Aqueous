@@ -173,6 +173,26 @@ export const Background = {
   'color-background-selected-pressed': Brand['brand-400'],
   'color-background-selected-disabled': Brand['brand-100'],
 
+  'color-background-danger': Red['red-100'],
+  'color-background-danger-hover': Red['red-200'],
+  'color-background-danger-pressed': Red['red-300'],
+  'color-background-danger-disabled': Red['red-50'],
+
+  'color-background-warning': Orange['orange-100'],
+  'color-background-warning-hover': Orange['orange-200'],
+  'color-background-warning-pressed': Orange['orange-300'],
+  'color-background-warning-disabled': Orange['orange-50'],
+
+  'color-background-success': Green['green-100'],
+  'color-background-success-hover': Green['green-200'],
+  'color-background-success-pressed': Green['green-300'],
+  'color-background-success-disabled': Green['green-50'],
+
+  'color-background-info': Brand['brand-100'],
+  'color-background-info-hover': Brand['brand-200'],
+  'color-background-info-pressed': Brand['brand-300'],
+  'color-background-info-disabled': Brand['brand-100'],
+
 
   /* Non-important colors */
   'color-background-accentgray': Neutral['neutral-200'],
