@@ -54,4 +54,15 @@ Some elements may also have certain things called 'states'. Some example of stat
 color-background-warning-disabled
 
 
+## Font/Typography Tokens
+Nyck's primary typography is Inter. Inter is used throughout the entire product and is the one and only font that we use. Do not change or add in new font types. Only Inter unless otherwise stated by the designer.
+
+foundation-type-size
+
+Foundation: Out of all the differen foundations, what kind of thing are we looking at? Are we looking at color? type? spacing? In this case, it will be 'font'.
+
+Type: What kind of text is it? Is it a heading? A body text?
+
+Size: What is the overall size of the text. Small? medium? large? xlarge?
+
 

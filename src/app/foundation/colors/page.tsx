@@ -6,8 +6,7 @@ export default function ColorsPage() {
         Colors
       </h1>
       <p className="mt-2 max-w-xl text-base leading-7 text-text-secondary">
-        Primitive color tokens for Aqueous. Swatches and usage guidance will be
-        documented here.
+        Color allows us to distinguish from other brands and create a sense of identity in our marketing & product.
       </p>
     </main>
   );

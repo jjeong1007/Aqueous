@@ -28,7 +28,7 @@ export const navSections: NavSection[] = [
     title: "Tokens",
     items: [
       {
-        label: "Colors",
+        label: "All Tokens",
         href: "/tokens/colors",
         icon: SwatchBook,
       },

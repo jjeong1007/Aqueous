@@ -46,7 +46,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="flex h-dvh w-[224px] shrink-0 flex-col bg-bg-secondary py-9 pl-2.5 pr-4">
+    <aside className="fixed inset-y-0 left-0 z-30 flex w-[224px] flex-col overflow-y-auto bg-bg-secondary py-9 pl-2.5 pr-4">
       <div className="flex w-full flex-col gap-4">
         {/* Brand header */}
         <div className="flex w-full items-center gap-[52px] px-2">
