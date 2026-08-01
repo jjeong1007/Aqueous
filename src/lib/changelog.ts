@@ -15,7 +15,7 @@ export type VersionEntry = {
 
 export const changelog: VersionEntry[] = [
   {
-    version: "Unreleased",
+    version: "0.2.0",
     date: "2026-07-31",
     changes: [
       {

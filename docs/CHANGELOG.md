@@ -86,7 +86,7 @@ does not exist yet, create one at the top of the `changelog` array.
 
 ---
 
-## [Unreleased]
+## [0.2.0] — 2026-07-31
 
 ### Added
 
