@@ -77,16 +77,18 @@ export function Sidebar() {
         {/* Nav sections */}
         {navSections.map((section, sectionIndex) => (
           <div
-            key={section.title}
+            key={section.title || `section-${sectionIndex}`}
             className={`flex w-full flex-col ${
               sectionIndex === 0 ? "gap-3" : "gap-2"
             }`}
           >
-            <div className="flex w-full items-center px-2">
-              <p className="flex-1 text-[13px] leading-[22px] text-text-tertiary">
-                {section.title}
-              </p>
-            </div>
+            {section.title && (
+              <div className="flex w-full items-center px-2">
+                <p className="flex-1 text-[13px] leading-[22px] text-text-tertiary">
+                  {section.title}
+                </p>
+              </div>
+            )}
             {section.items.map((item) => (
               <NavLink
                 key={item.href}

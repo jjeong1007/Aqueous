@@ -4,6 +4,8 @@ import { useDeferredValue, useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import {
   backgroundColorTokens,
+  borderColorTokens,
+  borderAttributeDescriptions,
   groupTokensByAttribute,
   type ColorTokenEntry,
 } from "@/lib/color-tokens";
@@ -178,6 +180,14 @@ function TableOfContents({
         >
           Background
         </TocButton>
+
+        <TocButton
+          active={filter === "border"}
+          indent
+          onClick={() => onFilterChange("border")}
+        >
+          Border
+        </TocButton>
       </div>
     </nav>
   );
@@ -188,11 +198,18 @@ export function TokenColorsView() {
   const [filter, setFilter] = useState<string | null>(null);
   const deferredQuery = useDeferredValue(query);
 
-  const groups = useMemo(() => {
+  const bgGroups = useMemo(() => {
     const filtered = backgroundColorTokens.filter((token) =>
       matchesQuery(token, deferredQuery),
     );
     return groupTokensByAttribute(filtered);
+  }, [deferredQuery]);
+
+  const borderGroups = useMemo(() => {
+    const filtered = borderColorTokens.filter((token) =>
+      matchesQuery(token, deferredQuery),
+    );
+    return groupTokensByAttribute(filtered, borderAttributeDescriptions, "Border");
   }, [deferredQuery]);
 
   return (
@@ -218,7 +235,9 @@ export function TokenColorsView() {
       </label>
 
       <div className="mt-12 flex gap-8">
-        <section id="background" className="min-w-0 flex-1">
+        <div className="min-w-0 flex-1">
+        {(filter === null || filter === "color" || filter === "background") && (
+        <section id="background">
           <h2 className="text-xl font-bold text-text-primary">Background</h2>
 
           <div className="mt-6">
@@ -228,13 +247,13 @@ export function TokenColorsView() {
               <span>Dark value</span>
             </div>
 
-            {groups.length === 0 ? (
+            {bgGroups.length === 0 ? (
               <p className="py-8 text-sm text-text-secondary">
                 No tokens match &ldquo;{query.trim()}&rdquo;.
               </p>
             ) : (
-              groups.map((group, groupIndex) => {
-                const isLastGroup = groupIndex === groups.length - 1;
+              bgGroups.map((group, groupIndex) => {
+                const isLastGroup = groupIndex === bgGroups.length - 1;
                 return (
                   <div
                     key={group.attribute}
@@ -255,6 +274,48 @@ export function TokenColorsView() {
             )}
           </div>
         </section>
+        )}
+
+        {(filter === null || filter === "color" || filter === "border") && (
+        <section id="border" className={filter !== "border" ? "mt-16" : undefined}>
+          <h2 className="text-xl font-bold text-text-primary">Border</h2>
+
+          <div className="mt-6">
+            <div className="grid grid-cols-[minmax(0,1.4fr)_minmax(180px,0.8fr)_minmax(180px,0.8fr)] gap-6 border-b border-neutral-300 pb-3 text-sm text-text-secondary">
+              <span>Token and description</span>
+              <span>Light value</span>
+              <span>Dark value</span>
+            </div>
+
+            {borderGroups.length === 0 ? (
+              <p className="py-8 text-sm text-text-secondary">
+                No tokens match &ldquo;{query.trim()}&rdquo;.
+              </p>
+            ) : (
+              borderGroups.map((group, groupIndex) => {
+                const isLastGroup = groupIndex === borderGroups.length - 1;
+                return (
+                  <div
+                    key={group.attribute}
+                    id={`border-${group.attribute}`}
+                    className={
+                      isLastGroup ? undefined : "border-b border-neutral-200"
+                    }
+                  >
+                    {group.tokens.map((token) => (
+                      <TokenRow key={token.name} token={token} />
+                    ))}
+                    <p className="max-w-3xl pb-6 text-sm leading-6 text-text-secondary">
+                      {group.description}
+                    </p>
+                  </div>
+                );
+              })
+            )}
+          </div>
+        </section>
+        )}
+        </div>
 
         <TableOfContents filter={filter} onFilterChange={setFilter} />
       </div>

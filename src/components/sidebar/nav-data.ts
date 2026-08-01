@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { Palette, SwatchBook } from "lucide-react";
+import { LayoutDashboard, Palette, SwatchBook } from "lucide-react";
 
 export type NavItem = {
   label: string;
@@ -14,6 +14,16 @@ export type NavSection = {
 
 /** Design system docs sections */
 export const navSections: NavSection[] = [
+  {
+    title: "",
+    items: [
+      {
+        label: "Overview",
+        href: "/overview",
+        icon: LayoutDashboard,
+      },
+    ],
+  },
   {
     title: "Foundation",
     items: [

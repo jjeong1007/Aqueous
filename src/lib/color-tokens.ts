@@ -1,5 +1,6 @@
 import {
   Background,
+  Border,
   Brand,
   Green,
   Neutral,
@@ -54,6 +55,11 @@ export function getBackgroundAttribute(tokenName: string): string {
   return withoutPrefix;
 }
 
+/** Extracts attribute from color-border-{attribute} */
+export function getBorderAttribute(tokenName: string): string {
+  return tokenName.replace(/^color-border-/, "");
+}
+
 export const backgroundColorTokens: ColorTokenEntry[] = Object.entries(
   Background,
 ).map(([name, hex]) => ({
@@ -61,6 +67,15 @@ export const backgroundColorTokens: ColorTokenEntry[] = Object.entries(
   hex,
   primitive: findPrimitive(hex),
   attribute: getBackgroundAttribute(name),
+}));
+
+export const borderColorTokens: ColorTokenEntry[] = Object.entries(
+  Border,
+).map(([name, hex]) => ({
+  name,
+  hex,
+  primitive: findPrimitive(hex),
+  attribute: getBorderAttribute(name),
 }));
 
 export type ColorTokenGroup = {
@@ -104,8 +119,48 @@ export const backgroundAttributeDescriptions: Record<string, string> = {
     "Use for backgrounds when there is no meaning tied to the color — a hint of slate for tags and chips.",
 };
 
+export const borderAttributeDescriptions: Record<string, string> = {
+  brand:
+    "Use for borders that reinforce Nyck brand identity on primary interactive elements.",
+  focused:
+    "Use for focus rings and focus-visible outlines on interactive controls.",
+  input:
+    "Default border for form inputs, selects, and text areas in their resting state.",
+  selected:
+    "Use for borders on actively selected items in lists, cards, or navigation.",
+  danger:
+    "Use for borders that signal destructive actions or error states.",
+  warning:
+    "Use for borders that signal cautionary or attention-required states.",
+  success:
+    "Use for borders that signal positive confirmation or completed states.",
+  info: "Use for informational borders that call attention without implying success or danger.",
+  disabled:
+    "Use for borders on disabled controls that should appear inactive.",
+  accentgray:
+    "Decorative border with no semantic meaning — a hint of gray for tags and chips.",
+  accentgreen:
+    "Decorative border with no semantic meaning — a hint of green for tags and chips.",
+  accentred:
+    "Decorative border with no semantic meaning — a hint of red for tags and chips.",
+  accentorange:
+    "Decorative border with no semantic meaning — a hint of orange for tags and chips.",
+  accentyellow:
+    "Decorative border with no semantic meaning — a hint of yellow for tags and chips.",
+  accentpurple:
+    "Decorative border with no semantic meaning — a hint of purple for tags and chips.",
+  accentpink:
+    "Decorative border with no semantic meaning — a hint of pink for tags and chips.",
+  accentteal:
+    "Decorative border with no semantic meaning — a hint of teal for tags and chips.",
+  accentslate:
+    "Decorative border with no semantic meaning — a hint of slate for tags and chips.",
+};
+
 export function groupTokensByAttribute(
   tokens: ColorTokenEntry[],
+  descriptions: Record<string, string> = backgroundAttributeDescriptions,
+  fallbackLabel = "Background",
 ): ColorTokenGroup[] {
   const groups: ColorTokenGroup[] = [];
 
@@ -118,8 +173,8 @@ export function groupTokensByAttribute(
         attribute: token.attribute,
         tokens: [token],
         description:
-          backgroundAttributeDescriptions[token.attribute] ??
-          `Background tokens for the ${token.attribute} attribute.`,
+          descriptions[token.attribute] ??
+          `${fallbackLabel} tokens for the ${token.attribute} attribute.`,
       });
     }
   }

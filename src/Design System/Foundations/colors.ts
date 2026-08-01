@@ -243,6 +243,30 @@ export const Background = {
 
 } as const;
 
+export const Border ={
+  'color-border-brand': Brand['brand-500'],
+  'color-border-neutral': Neutral['neutral-300'],
+  'color-border-focused': Brand['brand-500'],
+  'color-border-input': Neutral['neutral-300'],
+  'color-border-selected': Brand['brand-500'],
+  'color-border-danger': Red['red-500'],
+  'color-border-warning': Orange['orange-500'],
+  'color-border-success': Green['green-500'],
+  'color-border-info': Brand['brand-500'],
+  'color-border-disabled': Neutral['neutral-200'],
+
+  'color-border-accentgray': Neutral['neutral-500'],
+  'color-border-accentgreen': Green['green-500'],
+  'color-border-accentred': Red['red-500'],
+  'color-border-accentorange': Orange['orange-500'],
+  'color-border-accentyellow': Yellow['yellow-500'],
+  'color-border-accentpurple': Purple['purple-500'],
+  'color-border-accentpink': Pink['pink-500'],
+  'color-border-accentteal': Teal['teal-500'],
+  'color-border-accentslate': Slate['slate-500'],
+}
+
+
 /** Text semantics — values reference primitive tokens */
 export const Text = {
   'color-text-primary': Neutral.Black,
