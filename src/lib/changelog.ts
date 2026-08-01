@@ -46,6 +46,13 @@ export const changelog: VersionEntry[] = [
           "Added /overview as the new landing page with design system title, placeholder description, version display, and full changelog.",
         timestamp: "2026-07-31",
       },
+      {
+        type: "added",
+        title: "Foundation colors page implementation",
+        description:
+          "Built interactive palette view with vertical swatch columns for all 10 primitive color families, auto-contrast text, hover hex reveal, and click-to-copy clipboard support.",
+        timestamp: "2026-07-31",
+      },
     ],
   },
   {
@@ -91,7 +98,7 @@ export const changelog: VersionEntry[] = [
         type: "added",
         title: "Primitive color foundation page",
         description:
-          "Visual palette display at /foundation/colors.",
+          "Visual palette display at /foundation/colors with vertical swatch columns for all 10 color families and click-to-copy hex values.",
         timestamp: "2026-07-30T15:39:00-05:00",
       },
       {

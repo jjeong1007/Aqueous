@@ -78,7 +78,7 @@ does not exist yet, create one at the top of the `changelog` array.
 - **Text semantic tok2ens** — primary, secondary, tertiary, navigation, and brand text colors `2026-07-30 15:39 CDT`
 - **Icon semantic tokens** — primary, secondary, brand, and inverse icon colors `2026-07-30 15:39 CDT`
 - **All Tokens page** — searchable token reference at `/tokens/colors` with grouped rows, copyable token names, light value preview cards, and dark value placeholders `2026-07-30 15:39 CDT`
-- **Primitive color foundation page** — visual palette display at `/foundation/colors` `2026-07-30 15:39 CDT`
+- **Primitive color foundation page** — visual palette display at `/foundation/colors` with vertical swatch columns for all 10 color families and click-to-copy hex values `2026-07-30 15:39 CDT`
 - **Sidebar navigation** — global sidebar with icon-based nav, section grouping, and avatar `2026-07-30 15:39 CDT`
 - **Slate primitive scale** — added full slate-50 through slate-950 range `2026-07-30 15:48 CDT`
 - **Typography foundation file** — created `typography.ts` scaffold `2026-07-30 19:49 CDT`
@@ -94,3 +94,4 @@ does not exist yet, create one at the top of the `changelog` array.
 - **Border section on All Tokens page** — renders border tokens with the same grouped format as background tokens, including descriptions and copy-to-clipboard `2026-07-31`
 - **Table of contents filtering** — clicking Background, Border, or All Tokens in the sidebar now filters the visible sections `2026-07-31`
 - **Overview page** — added `/overview` as the new landing page with design system title, placeholder description, version display, and full changelog `2026-07-31`
+- **Foundation colors page implementation** — built interactive palette view with vertical swatch columns for all 10 primitive color families, auto-contrast text, hover hex reveal, and click-to-copy clipboard support `2026-07-31`
