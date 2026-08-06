@@ -19,7 +19,7 @@ export function SidebarIcon({
       ? "text-icon-primary"
       : tone === "brand"
         ? "text-icon-brand"
-        : "text-icon-secondary";
+        : "text-icon-neutral";
 
   return (
     <Icon

@@ -270,16 +270,46 @@ export const Border ={
 /** Text semantics — values reference primitive tokens */
 export const Text = {
   'color-text-primary': Neutral.Black,
-  'color-text-secondary': Neutral['neutral-500'],
-  'color-text-tertiary': Neutral['neutral-400'],
-  'color-text-navigation': Neutral['neutral-700'],
   'color-text-brand': Brand['brand-500'],
+  'color-text-neutral': Neutral['neutral-500'],
+  'color-text-disabled': Neutral['neutral-300'],
+  'color-text-selected': Brand['brand-500'],
+  'color-text-danger': Red['red-500'],
+  'color-text-warning': Orange['orange-500'],
+  'color-text-success': Green['green-500'],
+  'color-text-info': Brand['brand-500'],
+
+  'color-text-accentgray': Neutral['neutral-500'],
+  'color-text-accentgreen': Green['green-500'],
+  'color-text-accentred': Red['red-500'],
+  'color-text-accentorange': Orange['orange-500'],
+  'color-text-accentyellow': Yellow['yellow-500'],
+  'color-text-accentpurple': Purple['purple-500'],
+  'color-text-accentpink': Pink['pink-500'],
+  'color-text-accentteal': Teal['teal-500'],
+  'color-text-accentslate': Slate['slate-500'],
+  
 } as const;
 
 /** Icon semantics — values reference primitive tokens */
 export const Icon = {
   'color-icon-primary': Neutral.Black,
-  'color-icon-secondary': Neutral['neutral-500'],
   'color-icon-brand': Brand['brand-500'],
-  'color-icon-inverse': Neutral.White,
+  'color-icon-neutral': Neutral['neutral-500'],
+  'color-icon-disabled': Neutral['neutral-300'],
+  'color-icon-selected': Brand['brand-500'],
+  'color-icon-danger': Red['red-500'],
+  'color-icon-warning': Orange['orange-500'],
+  'color-icon-success': Green['green-500'],
+  'color-icon-info': Brand['brand-500'],
+
+  'color-icon-accentgray': Neutral['neutral-500'],
+  'color-icon-accentgreen': Green['green-500'],
+  'color-icon-accentred': Red['red-500'],
+  'color-icon-accentorange': Orange['orange-500'],
+  'color-icon-accentyellow': Yellow['yellow-500'],
+  'color-icon-accentpurple': Purple['purple-500'],
+  'color-icon-accentpink': Pink['pink-500'],
+  'color-icon-accentteal': Teal['teal-500'],
+  'color-icon-accentslate': Slate['slate-500'],
 } as const;

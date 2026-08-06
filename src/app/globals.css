@@ -22,56 +22,53 @@
   --neutral-700: #37393d;
   --black: #000000;
 
-  /*
-   * Semantic colors used by product navigation (light mode).
-   * Mapped from Figma variables on node 1270:807 → primitives.
-   */
-  --semantic-bg-primary: var(--white);
-  --semantic-bg-secondary: var(--neutral-100);
-  --semantic-bg-tertiary: var(--neutral-200);
-  --semantic-bg-brand-subtle: var(--brand-100);
-
-  --semantic-text-primary: var(--black);
-  --semantic-text-secondary: var(--neutral-500);
-  --semantic-text-tertiary: var(--neutral-400);
-  --semantic-text-navigation: var(--neutral-700);
-  --semantic-text-brand: var(--brand-500);
-
-  --semantic-icon-primary: var(--black);
-  --semantic-icon-secondary: var(--neutral-500);
-  --semantic-icon-brand: var(--brand-500);
-  --semantic-icon-inverse: var(--white);
+  /* Primitives — Status */
+  --green-500: #22c55e;
+  --red-500: #ef4444;
+  --orange-500: #f97316;
 }
 
 @theme inline {
-  --color-background: var(--semantic-bg-primary);
-  --color-foreground: var(--semantic-text-primary);
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
 
-  --color-bg-primary: var(--semantic-bg-primary);
-  --color-bg-secondary: var(--semantic-bg-secondary);
-  --color-bg-tertiary: var(--semantic-bg-tertiary);
-  --color-bg-brand-subtle: var(--semantic-bg-brand-subtle);
+  /* ── Background semantic tokens ── */
+  --color-background-neutral: var(--white);
+  --color-background-neutral-hover: var(--neutral-100);
+  --color-background-neutral-pressed: var(--neutral-200);
+  --color-background-brand: var(--brand-100);
+  --color-background-brand-hover: var(--brand-200);
+  --color-background-brand-pressed: var(--brand-300);
+  --color-background-accentgray: var(--neutral-200);
+  --color-background-accentgray-hover: var(--neutral-300);
 
-  --color-text-primary: var(--semantic-text-primary);
-  --color-text-secondary: var(--semantic-text-secondary);
-  --color-text-tertiary: var(--semantic-text-tertiary);
-  --color-text-navigation: var(--semantic-text-navigation);
-  --color-text-brand: var(--semantic-text-brand);
+  /* ── Text semantic tokens ── */
+  --color-text-primary: var(--black);
+  --color-text-brand: var(--brand-500);
+  --color-text-neutral: var(--neutral-500);
+  --color-text-disabled: var(--neutral-300);
 
-  --color-icon-primary: var(--semantic-icon-primary);
-  --color-icon-secondary: var(--semantic-icon-secondary);
-  --color-icon-brand: var(--semantic-icon-brand);
-  --color-icon-inverse: var(--semantic-icon-inverse);
+  /* ── Icon semantic tokens ── */
+  --color-icon-primary: var(--black);
+  --color-icon-brand: var(--brand-500);
+  --color-icon-neutral: var(--neutral-500);
+  --color-icon-success: var(--green-500);
+  --color-icon-danger: var(--red-500);
+  --color-icon-warning: var(--orange-500);
 
+  /* ── Border semantic tokens ── */
+  --color-border-neutral: var(--neutral-300);
+  --color-border-brand: var(--brand-500);
+  --color-border-focused: var(--brand-500);
+  --color-border-disabled: var(--neutral-200);
+
+  /* ── Primitives exposed as utilities ── */
   --color-brand-500: var(--brand-500);
-  --color-neutral-200: var(--neutral-200);
-  --color-neutral-300: var(--neutral-300);
+  --color-brand-900: var(--brand-900);
   --color-neutral-700: var(--neutral-700);
 }
 
 body {
-  background: var(--semantic-bg-primary);
-  color: var(--semantic-text-primary);
+  background: var(--white);
+  color: var(--black);
 }

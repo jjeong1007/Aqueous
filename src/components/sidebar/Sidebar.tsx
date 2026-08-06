@@ -26,14 +26,16 @@ function NavLink({
   return (
     <Link
       href={href}
-      className={`flex w-full items-center gap-2 rounded-lg px-2 py-3 ${
-        active ? "bg-bg-brand-subtle" : "bg-transparent"
+      className={`flex w-full items-center gap-2 rounded-lg px-2 py-3 transition-colors ${
+        active
+          ? "bg-background-brand hover:bg-background-brand-hover active:bg-background-brand-pressed"
+          : "bg-transparent hover:bg-background-brand active:bg-background-brand-hover"
       }`}
     >
       <SidebarIcon icon={icon} active={active} />
       <span
         className={`text-base font-medium leading-none ${
-          active ? "text-text-brand" : "text-text-navigation"
+          active ? "text-text-brand" : "text-text-neutral"
         }`}
       >
         {label}
@@ -46,7 +48,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-30 flex w-[224px] flex-col overflow-y-auto bg-bg-secondary py-9 pl-2.5 pr-4">
+    <aside className="fixed inset-y-0 left-0 z-30 flex w-56 flex-col overflow-y-auto bg-background-neutral-hover py-9 pl-2.5 pr-4">
       <div className="flex w-full flex-col gap-4">
         {/* Brand header */}
         <div className="flex w-full items-center gap-[52px] px-2">
@@ -84,7 +86,7 @@ export function Sidebar() {
           >
             {section.title && (
               <div className="flex w-full items-center px-2">
-                <p className="flex-1 text-[13px] leading-[22px] text-text-tertiary">
+                <p className="flex-1 text-[13px] leading-5.5 text-text-neutral">
                   {section.title}
                 </p>
               </div>

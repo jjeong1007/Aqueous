@@ -1,6 +1,8 @@
 import {
   Background,
   Border,
+  Text,
+  Icon,
   Brand,
   Green,
   Neutral,
@@ -60,6 +62,16 @@ export function getBorderAttribute(tokenName: string): string {
   return tokenName.replace(/^color-border-/, "");
 }
 
+/** Extracts attribute from color-text-{attribute} */
+export function getTextAttribute(tokenName: string): string {
+  return tokenName.replace(/^color-text-/, "");
+}
+
+/** Extracts attribute from color-icon-{attribute} */
+export function getIconAttribute(tokenName: string): string {
+  return tokenName.replace(/^color-icon-/, "");
+}
+
 export const backgroundColorTokens: ColorTokenEntry[] = Object.entries(
   Background,
 ).map(([name, hex]) => ({
@@ -76,6 +88,24 @@ export const borderColorTokens: ColorTokenEntry[] = Object.entries(
   hex,
   primitive: findPrimitive(hex),
   attribute: getBorderAttribute(name),
+}));
+
+export const textColorTokens: ColorTokenEntry[] = Object.entries(
+  Text,
+).map(([name, hex]) => ({
+  name,
+  hex,
+  primitive: findPrimitive(hex),
+  attribute: getTextAttribute(name),
+}));
+
+export const iconColorTokens: ColorTokenEntry[] = Object.entries(
+  Icon,
+).map(([name, hex]) => ({
+  name,
+  hex,
+  primitive: findPrimitive(hex),
+  attribute: getIconAttribute(name),
 }));
 
 export type ColorTokenGroup = {
@@ -156,6 +186,88 @@ export const borderAttributeDescriptions: Record<string, string> = {
   accentslate:
     "Decorative border with no semantic meaning — a hint of slate for tags and chips.",
 };
+
+export const textAttributeDescriptions: Record<string, string> = {
+  primary:
+    "Default text color for body copy, headings, and general content.",
+  brand:
+    "Use for text that reinforces Nyck brand identity — links, branded labels, and emphasis.",
+  neutral:
+    "Use for secondary or de-emphasized text such as captions, helper text, and metadata.",
+  disabled:
+    "Use for text on disabled controls that should appear inactive.",
+  selected:
+    "Use for text within actively selected or highlighted elements.",
+  danger:
+    "Use for text that signals destructive actions or error messages.",
+  warning:
+    "Use for text that signals cautionary or attention-required states.",
+  success:
+    "Use for text that signals positive confirmation or completed states.",
+  info: "Use for informational text that calls attention without implying success or danger.",
+  accentgray:
+    "Decorative text with no semantic meaning — a hint of gray for tags and labels.",
+  accentgreen:
+    "Decorative text with no semantic meaning — a hint of green for tags and labels.",
+  accentred:
+    "Decorative text with no semantic meaning — a hint of red for tags and labels.",
+  accentorange:
+    "Decorative text with no semantic meaning — a hint of orange for tags and labels.",
+  accentyellow:
+    "Decorative text with no semantic meaning — a hint of yellow for tags and labels.",
+  accentpurple:
+    "Decorative text with no semantic meaning — a hint of purple for tags and labels.",
+  accentpink:
+    "Decorative text with no semantic meaning — a hint of pink for tags and labels.",
+  accentteal:
+    "Decorative text with no semantic meaning — a hint of teal for tags and labels.",
+  accentslate:
+    "Decorative text with no semantic meaning — a hint of slate for tags and labels.",
+};
+
+export const iconAttributeDescriptions: Record<string, string> = {
+  primary:
+    "Default icon color for general-purpose icons and actions.",
+  brand:
+    "Use for icons that reinforce Nyck brand identity.",
+  neutral:
+    "Use for secondary or de-emphasized icons such as helper indicators and metadata.",
+  disabled:
+    "Use for icons on disabled controls that should appear inactive.",
+  selected:
+    "Use for icons within actively selected or highlighted elements.",
+  danger:
+    "Use for icons that signal destructive actions or error states.",
+  warning:
+    "Use for icons that signal cautionary or attention-required states.",
+  success:
+    "Use for icons that signal positive confirmation or completed states.",
+  info: "Use for informational icons that call attention without implying success or danger.",
+  accentgray:
+    "Decorative icon with no semantic meaning — a hint of gray for tags and badges.",
+  accentgreen:
+    "Decorative icon with no semantic meaning — a hint of green for tags and badges.",
+  accentred:
+    "Decorative icon with no semantic meaning — a hint of red for tags and badges.",
+  accentorange:
+    "Decorative icon with no semantic meaning — a hint of orange for tags and badges.",
+  accentyellow:
+    "Decorative icon with no semantic meaning — a hint of yellow for tags and badges.",
+  accentpurple:
+    "Decorative icon with no semantic meaning — a hint of purple for tags and badges.",
+  accentpink:
+    "Decorative icon with no semantic meaning — a hint of pink for tags and badges.",
+  accentteal:
+    "Decorative icon with no semantic meaning — a hint of teal for tags and badges.",
+  accentslate:
+    "Decorative icon with no semantic meaning — a hint of slate for tags and badges.",
+};
+
+export const totalTokenCount =
+  backgroundColorTokens.length +
+  borderColorTokens.length +
+  textColorTokens.length +
+  iconColorTokens.length;
 
 export function groupTokensByAttribute(
   tokens: ColorTokenEntry[],

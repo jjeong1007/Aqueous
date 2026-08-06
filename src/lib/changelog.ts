@@ -10,13 +10,81 @@ export type ChangeEntry = {
 export type VersionEntry = {
   version: string;
   date: string;
+  author: string;
+  summary: string;
   changes: ChangeEntry[];
 };
 
 export const changelog: VersionEntry[] = [
   {
+    version: "0.3.0",
+    date: "2026-08-06",
+    author: "Jason Jeong",
+    summary: "Overhauled text and icon tokens, migrated site to semantic color tokens, redesigned changelog, and added overview metrics.",
+    changes: [
+      {
+        type: "changed",
+        title: "Text semantic tokens overhaul",
+        description:
+          "Replaced secondary, tertiary, and navigation text tokens with a full set: primary, brand, neutral, disabled, selected, danger, warning, success, info, and 9 accent categories (gray, green, red, orange, yellow, purple, pink, teal, slate).",
+        timestamp: "2026-08-06",
+      },
+      {
+        type: "changed",
+        title: "Icon semantic tokens overhaul",
+        description:
+          "Replaced secondary and inverse icon tokens with a full set: primary, brand, neutral, disabled, selected, danger, warning, success, info, and 9 accent categories (gray, green, red, orange, yellow, purple, pink, teal, slate).",
+        timestamp: "2026-08-06",
+      },
+      {
+        type: "changed",
+        title: "Full semantic color token migration",
+        description:
+          "Migrated every hardcoded color across the site to design system tokens. Restructured globals.css to register background, text, icon, and border semantic tokens in the Tailwind theme. No component references a raw color outside the design system.",
+        timestamp: "2026-08-06",
+      },
+      {
+        type: "changed",
+        title: "Changelog redesign",
+        description:
+          "Changelog entries are now collapsible cards with a summary, formatted date, and author. Expanding a card reveals the full change list.",
+        timestamp: "2026-08-06",
+      },
+      {
+        type: "added",
+        title: "Text and Icon sections on All Tokens page",
+        description:
+          "Renders text and icon tokens with the same grouped format as background and border tokens, including descriptions and copy-to-clipboard.",
+        timestamp: "2026-08-06",
+      },
+      {
+        type: "added",
+        title: "Text and Icon filters in table of contents",
+        description:
+          "Added Text and Icon as filterable categories in the token page sidebar.",
+        timestamp: "2026-08-06",
+      },
+      {
+        type: "added",
+        title: "Overview page metrics",
+        description:
+          "Added token count and component count stat cards alongside the version display on the overview page.",
+        timestamp: "2026-08-06",
+      },
+      {
+        type: "added",
+        title: "Sidebar nav hover and pressed states",
+        description:
+          "Navigation links now use brand background tokens for hover and pressed interactions.",
+        timestamp: "2026-08-06",
+      },
+    ],
+  },
+  {
     version: "0.2.0",
     date: "2026-07-31",
+    author: "Jason Jeong",
+    summary: "Added border tokens, token page sections, table of contents filtering, overview page, and foundation colors.",
     changes: [
       {
         type: "added",
@@ -58,6 +126,8 @@ export const changelog: VersionEntry[] = [
   {
     version: "0.1.0",
     date: "2026-07-30",
+    author: "Jason Jeong",
+    summary: "Initial release with primitive color palettes, semantic tokens, token viewer, and sidebar navigation.",
     changes: [
       {
         type: "added",
@@ -77,14 +147,14 @@ export const changelog: VersionEntry[] = [
         type: "added",
         title: "Text semantic tokens",
         description:
-          "Primary, secondary, tertiary, navigation, and brand text colors.",
+          "Initial text color tokens including primary and brand.",
         timestamp: "2026-07-30T15:39:00-05:00",
       },
       {
         type: "added",
         title: "Icon semantic tokens",
         description:
-          "Primary, secondary, brand, and inverse icon colors.",
+          "Initial icon color tokens including primary and brand.",
         timestamp: "2026-07-30T15:39:00-05:00",
       },
       {

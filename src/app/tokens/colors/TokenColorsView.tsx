@@ -5,7 +5,11 @@ import { Search } from "lucide-react";
 import {
   backgroundColorTokens,
   borderColorTokens,
+  textColorTokens,
+  iconColorTokens,
   borderAttributeDescriptions,
+  textAttributeDescriptions,
+  iconAttributeDescriptions,
   groupTokensByAttribute,
   type ColorTokenEntry,
 } from "@/lib/color-tokens";
@@ -46,14 +50,14 @@ function CopyableTokenName({ name }: { name: string }) {
 
   return (
     <div className="group/token relative inline-flex max-w-full">
-      <span className="pointer-events-none absolute -top-9 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-md bg-neutral-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-md transition-opacity group-hover/token:opacity-100">
+      <span className="pointer-events-none absolute -top-9 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-md bg-brand-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-md transition-opacity group-hover/token:opacity-100">
         {copied ? "Copied!" : "Copy to clipboard"}
       </span>
       <button
         type="button"
         onClick={() => copy(name)}
         aria-label={copied ? `Copied ${name}` : `Copy token ${name}`}
-        className="inline-flex max-w-full cursor-pointer items-center gap-1.5 rounded-md bg-bg-secondary px-2 py-1 text-left font-mono text-[13px] leading-5 text-text-primary transition-colors hover:bg-neutral-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
+        className="inline-flex max-w-full cursor-pointer items-center gap-1.5 rounded-md bg-background-neutral-hover px-2 py-1 text-left font-mono text-[13px] leading-5 text-text-primary transition-colors hover:bg-background-accentgray-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-focused"
       >
         <code className="truncate">{name}</code>
       </button>
@@ -72,7 +76,7 @@ function LightValueCard({
 
   return (
     <div className="group relative w-full max-w-[200px]">
-      <span className="pointer-events-none absolute -top-9 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-md bg-neutral-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-md transition-opacity group-hover:opacity-100">
+      <span className="pointer-events-none absolute -top-9 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-md bg-brand-900 px-2.5 py-1.5 text-xs text-white opacity-0 shadow-md transition-opacity group-hover:opacity-100">
         {copied ? "Copied!" : "Copy to clipboard"}
       </span>
       <button
@@ -81,10 +85,10 @@ function LightValueCard({
         aria-label={
           copied ? `Copied ${primitive}` : `Copy primitive ${primitive}`
         }
-        className="w-full cursor-pointer overflow-hidden rounded-lg border border-neutral-300 bg-bg-primary text-left transition-colors hover:bg-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
+        className="w-full cursor-pointer overflow-hidden rounded-lg border border-border-neutral bg-background-neutral text-left transition-colors hover:bg-background-neutral-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-focused"
       >
         <div
-          className="mx-2 mt-2 h-8 rounded-md border border-neutral-200"
+          className="mx-2 mt-2 h-8 rounded-md border border-border-disabled"
           style={{ backgroundColor: hex }}
           title={hex}
         />
@@ -136,8 +140,8 @@ function TocButton({
         indent ? "pl-6" : "pl-3"
       } ${
         active
-          ? "border-brand-500 font-medium text-text-brand"
-          : "border-transparent text-text-secondary hover:text-text-primary"
+          ? "border-border-brand font-medium text-text-brand"
+          : "border-transparent text-text-neutral hover:text-text-primary"
       }`}
     >
       {children}
@@ -155,10 +159,10 @@ function TableOfContents({
   return (
     <nav
       aria-label="Table of contents"
-      className="hidden w-56 shrink-0 border-l border-neutral-200 xl:block"
+      className="hidden w-56 shrink-0 border-l border-border-disabled xl:block"
     >
       <div className="sticky top-10">
-        <p className="mb-3 pl-3 text-xs font-semibold uppercase tracking-wider text-text-tertiary">
+        <p className="mb-3 pl-3 text-xs font-semibold uppercase tracking-wider text-text-neutral">
           On this page
         </p>
 
@@ -188,6 +192,22 @@ function TableOfContents({
         >
           Border
         </TocButton>
+
+        <TocButton
+          active={filter === "text"}
+          indent
+          onClick={() => onFilterChange("text")}
+        >
+          Text
+        </TocButton>
+
+        <TocButton
+          active={filter === "icon"}
+          indent
+          onClick={() => onFilterChange("icon")}
+        >
+          Icon
+        </TocButton>
       </div>
     </nav>
   );
@@ -212,6 +232,20 @@ export function TokenColorsView() {
     return groupTokensByAttribute(filtered, borderAttributeDescriptions, "Border");
   }, [deferredQuery]);
 
+  const textGroups = useMemo(() => {
+    const filtered = textColorTokens.filter((token) =>
+      matchesQuery(token, deferredQuery),
+    );
+    return groupTokensByAttribute(filtered, textAttributeDescriptions, "Text");
+  }, [deferredQuery]);
+
+  const iconGroups = useMemo(() => {
+    const filtered = iconColorTokens.filter((token) =>
+      matchesQuery(token, deferredQuery),
+    );
+    return groupTokensByAttribute(filtered, iconAttributeDescriptions, "Icon");
+  }, [deferredQuery]);
+
   return (
     <main className="flex flex-1 flex-col px-10 py-10">
       <h1 className="text-[32px] font-bold tracking-tight text-text-primary">
@@ -222,7 +256,7 @@ export function TokenColorsView() {
         <span className="sr-only">Search tokens</span>
         <Search
           aria-hidden
-          className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-icon-secondary"
+          className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-icon-neutral"
           strokeWidth={1.75}
         />
         <input
@@ -230,7 +264,7 @@ export function TokenColorsView() {
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           placeholder="Search by token, primitive, or hex…"
-          className="w-full rounded-lg border border-neutral-300 bg-bg-primary py-2.5 pr-3 pl-10 text-sm text-text-primary outline-none placeholder:text-text-tertiary focus:border-brand-500"
+          className="w-full rounded-lg border border-border-neutral bg-background-neutral py-2.5 pr-3 pl-10 text-sm text-text-primary outline-none placeholder:text-text-disabled focus:border-border-focused"
         />
       </label>
 
@@ -241,14 +275,14 @@ export function TokenColorsView() {
           <h2 className="text-xl font-bold text-text-primary">Background</h2>
 
           <div className="mt-6">
-            <div className="grid grid-cols-[minmax(0,1.4fr)_minmax(180px,0.8fr)_minmax(180px,0.8fr)] gap-6 border-b border-neutral-300 pb-3 text-sm text-text-secondary">
+            <div className="grid grid-cols-[minmax(0,1.4fr)_minmax(180px,0.8fr)_minmax(180px,0.8fr)] gap-6 border-b border-border-neutral pb-3 text-sm text-text-neutral">
               <span>Token and description</span>
               <span>Light value</span>
               <span>Dark value</span>
             </div>
 
             {bgGroups.length === 0 ? (
-              <p className="py-8 text-sm text-text-secondary">
+              <p className="py-8 text-sm text-text-neutral">
                 No tokens match &ldquo;{query.trim()}&rdquo;.
               </p>
             ) : (
@@ -259,13 +293,13 @@ export function TokenColorsView() {
                     key={group.attribute}
                     id={slugify(group.attribute)}
                     className={
-                      isLastGroup ? undefined : "border-b border-neutral-200"
+                      isLastGroup ? undefined : "border-b border-border-disabled"
                     }
                   >
                     {group.tokens.map((token) => (
                       <TokenRow key={token.name} token={token} />
                     ))}
-                    <p className="max-w-3xl pb-6 text-sm leading-6 text-text-secondary">
+                    <p className="max-w-3xl pb-6 text-sm leading-6 text-text-neutral">
                       {group.description}
                     </p>
                   </div>
@@ -281,14 +315,14 @@ export function TokenColorsView() {
           <h2 className="text-xl font-bold text-text-primary">Border</h2>
 
           <div className="mt-6">
-            <div className="grid grid-cols-[minmax(0,1.4fr)_minmax(180px,0.8fr)_minmax(180px,0.8fr)] gap-6 border-b border-neutral-300 pb-3 text-sm text-text-secondary">
+            <div className="grid grid-cols-[minmax(0,1.4fr)_minmax(180px,0.8fr)_minmax(180px,0.8fr)] gap-6 border-b border-border-neutral pb-3 text-sm text-text-neutral">
               <span>Token and description</span>
               <span>Light value</span>
               <span>Dark value</span>
             </div>
 
             {borderGroups.length === 0 ? (
-              <p className="py-8 text-sm text-text-secondary">
+              <p className="py-8 text-sm text-text-neutral">
                 No tokens match &ldquo;{query.trim()}&rdquo;.
               </p>
             ) : (
@@ -299,13 +333,93 @@ export function TokenColorsView() {
                     key={group.attribute}
                     id={`border-${group.attribute}`}
                     className={
-                      isLastGroup ? undefined : "border-b border-neutral-200"
+                      isLastGroup ? undefined : "border-b border-border-disabled"
                     }
                   >
                     {group.tokens.map((token) => (
                       <TokenRow key={token.name} token={token} />
                     ))}
-                    <p className="max-w-3xl pb-6 text-sm leading-6 text-text-secondary">
+                    <p className="max-w-3xl pb-6 text-sm leading-6 text-text-neutral">
+                      {group.description}
+                    </p>
+                  </div>
+                );
+              })
+            )}
+          </div>
+        </section>
+        )}
+
+        {(filter === null || filter === "color" || filter === "text") && (
+        <section id="text" className={filter !== "text" ? "mt-16" : undefined}>
+          <h2 className="text-xl font-bold text-text-primary">Text</h2>
+
+          <div className="mt-6">
+            <div className="grid grid-cols-[minmax(0,1.4fr)_minmax(180px,0.8fr)_minmax(180px,0.8fr)] gap-6 border-b border-border-neutral pb-3 text-sm text-text-neutral">
+              <span>Token and description</span>
+              <span>Light value</span>
+              <span>Dark value</span>
+            </div>
+
+            {textGroups.length === 0 ? (
+              <p className="py-8 text-sm text-text-neutral">
+                No tokens match &ldquo;{query.trim()}&rdquo;.
+              </p>
+            ) : (
+              textGroups.map((group, groupIndex) => {
+                const isLastGroup = groupIndex === textGroups.length - 1;
+                return (
+                  <div
+                    key={group.attribute}
+                    id={`text-${group.attribute}`}
+                    className={
+                      isLastGroup ? undefined : "border-b border-border-disabled"
+                    }
+                  >
+                    {group.tokens.map((token) => (
+                      <TokenRow key={token.name} token={token} />
+                    ))}
+                    <p className="max-w-3xl pb-6 text-sm leading-6 text-text-neutral">
+                      {group.description}
+                    </p>
+                  </div>
+                );
+              })
+            )}
+          </div>
+        </section>
+        )}
+
+        {(filter === null || filter === "color" || filter === "icon") && (
+        <section id="icon" className={filter !== "icon" ? "mt-16" : undefined}>
+          <h2 className="text-xl font-bold text-text-primary">Icon</h2>
+
+          <div className="mt-6">
+            <div className="grid grid-cols-[minmax(0,1.4fr)_minmax(180px,0.8fr)_minmax(180px,0.8fr)] gap-6 border-b border-border-neutral pb-3 text-sm text-text-neutral">
+              <span>Token and description</span>
+              <span>Light value</span>
+              <span>Dark value</span>
+            </div>
+
+            {iconGroups.length === 0 ? (
+              <p className="py-8 text-sm text-text-neutral">
+                No tokens match &ldquo;{query.trim()}&rdquo;.
+              </p>
+            ) : (
+              iconGroups.map((group, groupIndex) => {
+                const isLastGroup = groupIndex === iconGroups.length - 1;
+                return (
+                  <div
+                    key={group.attribute}
+                    id={`icon-${group.attribute}`}
+                    className={
+                      isLastGroup ? undefined : "border-b border-border-disabled"
+                    }
+                  >
+                    {group.tokens.map((token) => (
+                      <TokenRow key={token.name} token={token} />
+                    ))}
+                    <p className="max-w-3xl pb-6 text-sm leading-6 text-text-neutral">
                       {group.description}
                     </p>
                   </div>
